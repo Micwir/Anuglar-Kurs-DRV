@@ -1,0 +1,16 @@
+<h2>Customer List</h2>
+
+<div class="d-flex justify-content-between my-4">
+    <button class="btn btn-primary" routerLink="new">New</button>
+    <button class="btn btn-outline-secondary" (click)="loadCustomers()">Refresh</button>
+</div>
+
+<app-loading-indicator [show]="isLoading"></app-loading-indicator>
+
+<app-error-box [error]="errorMessage"></app-error-box>
+
+@if ( errorMessage === null && !isLoading) {
+    <app-customer-table [customers]="customers" (deleteEvent)="deleteCustomers($event)">
+        Stand von {{ dateTimeOfData | date:'HH:mm:ss'}} Uhr
+    </app-customer-table>
+} 

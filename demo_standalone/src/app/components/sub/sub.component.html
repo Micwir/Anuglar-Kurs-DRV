@@ -1,0 +1,15 @@
+<header>
+    <ng-content select="#header_section"></ng-content>
+</header>
+<p>Das ist ein fester Text in der Komponente</p>
+<div>
+    <ng-content select="#main_section"></ng-content>
+    <ol>
+        @for(item of values; track item.id){
+            <li>
+                {{item.name}} ({{item.id}})
+                <button (click)="editItem(item.id)">Edit</button>
+            </li>
+        }
+    </ol>
+</div>

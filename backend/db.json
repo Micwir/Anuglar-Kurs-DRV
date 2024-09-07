@@ -1,0 +1,39 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Spiderman",
+      "credit": 9
+    },
+    {
+      "name": "Wolverine",
+      "credit": "40",
+      "id": 2
+    },
+    {
+      "name": "Deadpool",
+      "credit": 666,
+      "id": 666
+    },
+    {
+      "id": 4,
+      "name": "Batman",
+      "credit": 87
+    },
+    {
+      "id": 5,
+      "name": "Iron Man",
+      "credit": 19
+    },
+    {
+      "name": "Green Lantern",
+      "credit": "10",
+      "id": 667
+    },
+    {
+      "name": "Hawkeye",
+      "credit": "100",
+      "id": 668
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+<h1 class="display-3">Template Syntax</h1>
+
+<h2>Interpolation Directive</h2>
+<p>Zahlen: {{ 200.55 + 5}}</p>
+<p>Data Bindung: {{ value }}</p>
+<p>Data Bindung: {{ valueNum }}</p>
+<p>Data Bindung: {{ textSnippet.toUpperCase() }}</p>
+<p>Datum: {{ date.toLocaleDateString('de-DE') }}</p>
+<p>Währung: {{ value.toLocaleString('de-DE', {
+    style: 'currency',
+    currency: 'EUR'
+}) }}</p>
+
+<h2>Pipes</h2>
+<p>Textausgabe {{ textSnippet | uppercase }}</p>
+<p>Datum {{ date | date:'dd.MM.YYYY':'de-DE' }}</p>
+<p>Währung {{ value | currency: 'EUR':'symbol':'1.2-2' }}</p>
+<p>Observable : {{ text$ | async }}</p>
+<pre>Objekte zum Debuggen:
+{{listOfItems | json}}
+</pre>
+
+<h2>Attribute Deirectives</h2>
+<div class="mb-3">
+    <input class="form-control" [readonly]="readonlyState" value="Festwert">    
+</div>
+
+<div class="mb-3">
+    <button class="btn btn-primary" [disabled]="formInvalid">Absenden</button>    
+</div>
+<p [title]="textSnippet">textSnippet</p>
+
+<h3>Angular Attribute Directives</h3>
+<div class="mb-3" [innerHTML]="htmlSnippet"></div>
+
+<h3>Custom Attributes</h3>
+<p data-projectid="43589">Lorem ipsum dolor sit.</p>
+<p [attr.data-projectid]="projectId | lowercase">Lorem ipsum dolor sit.</p>
+
+<h2>Style Attribute</h2>
+<p style="color: red; text-decoration: underline;">Lorem ipsum dolor sit amet.</p>
+<p [style.color]="'red'">At nulla iusto enim maxime.</p>
+<p [ngStyle]="{
+    backgroundColor: 'blue',    
+    color: '#fff',    
+    padding: '5px'
+}">Mollitia deserunt vitae ratione exercitationem.</p>
+
+<h2>Class Attribute</h2>
+
+<div class="alert alert-info">
+    <p>Lorem ipsum dolor sit amet.</p>
+</div>
+<div class="alert" [class.alert-success]="!errorState" [class.alert-warning]="errorState" >
+    <p>Quibusdam laudantium ratione ex est!</p>
+</div>
+<div [ngClass]="{
+    alert: true,
+    'alert-success': !errorState,
+    'alert-danger': errorState
+}">
+    <p>Eos eligendi distinctio esse. Dignissimos!</p>
+</div>
+
+<h2>Structural Attributes - New Syntax</h2>
+<div *ngIf="errorState">
+    <p>Fehler (alte Syntax)</p>
+</div>
+
+@if (errorState){
+    <div class="alert alert-danger"> Es ist ein Fehler aufgetreten (neue Syntax)</div>
+} @else{
+    <div class="alert alert-success"> Alles in Ordnung</div>
+}
+
+<ul>
+@for(item of listOfItems; track item.id){
+    <li>{{item.name}} ({{ item. id}})</li>
+}
+</ul>
+
+<h2>Event Directives</h2>
+
+<div class="mb-3">
+    <button class="btn btn-secondary me-2" (click)="clickHandler()">Click</button>
+</div>
+
+<form method="get" (submit)="formSubmitHandler($event)">
+    <button class="btn btn-primary">Absenden</button>
+</form>
+
+<h2>2-way Data-Bunding</h2>
+<form (ngSubmit)="submitHandler($event)">
+    <div class="mb-3">
+        <label for="eingabe" class="form-label">Eingabe: {{formValue}}</label>
+        <input type="text" id="eingabe" class="form-control" [(ngModel)]="formValue" name="eingabe">
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Absenden</button>
+    </div>
+</form>
+
+<h2>Sub Components</h2>
+<app-sub [values]="listOfItems" (edit)="editHandler($event)">
+    <h3 id="header_section">Content Projection</h3>
+    <ul id="main_section">
+        @for(item of listOfItems; track item.id){
+            <li>{{item.name}} ({{ item. id}}) </li>
+        }
+        </ul>
+</app-sub>
+
+<h2>Life Cycle Methods</h2>
